@@ -3,9 +3,12 @@ import Tweet from '../schemas/Tweet';
 class TweetController {
 
     async index(req, res) {
-        const tweets = await Tweet.find({}).sort({ createdAt: 'desc' }).populate('author');
-
-        return res.json(tweets);
+        try {
+            const tweets = await Tweet.find({}).sort({ createdAt: 'desc' }).populate('author');
+            return res.json(tweets);
+        } catch(e) {
+            return res.status(502).json(e);
+        }
     }
 
     async store(req, res) {

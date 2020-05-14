@@ -4,6 +4,7 @@ class TweetController {
 
     async index(req, res) {
         try {
+            console.log('oi?')
             const tweets = await Tweet.find({}).sort({ createdAt: 'desc' }).populate('author');
             return res.json(tweets);
         } catch(e) {

@@ -10,6 +10,9 @@ class Database {
             process.env.MONGO_URL,
             { useNewUrlParser: true, useFindAndModify: true, useUnifiedTopology: true, useFindAndModify: false  },
         );
+        mongoose.connection.on('error', err => {
+            console.log(`MongoDB connection error: ${err}`);
+        });
     }
 }
 
